@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "215d0cdb-05d6-4ab4-9f43-8a8cc1215805",
+		"name": "InsightFlow - Documents",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33648419"
+	},
+	"item": [
+		{
+			"name": "Create Document",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Prueba de Taaller 3\",\r\n  \"icon\": \"🧪\",\r\n  \"workspace_id\": \"workspace-123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3100/documents",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3100",
+					"path": [
+						"documents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Document",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3100/documents/22825c47-da3f-463a-ac13-4f62bc4ebd9c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3100",
+					"path": [
+						"documents",
+						"22825c47-da3f-463a-ac13-4f62bc4ebd9c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Document",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"content\": {\r\n     \"ops\": [{ \"insert\": \"Editando el contenido...\" }]\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3100/documents/cb0fafd6-de71-45df-ab0b-5b673865db63",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3100",
+					"path": [
+						"documents",
+						"cb0fafd6-de71-45df-ab0b-5b673865db63"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Document",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3100/documents/22825c47-da3f-463a-ac13-4f62bc4ebd9c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3100",
+					"path": [
+						"documents",
+						"22825c47-da3f-463a-ac13-4f62bc4ebd9c"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api",
+			"value": ""
+		}
+	]
+}
