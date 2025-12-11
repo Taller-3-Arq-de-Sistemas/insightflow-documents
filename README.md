@@ -75,3 +75,49 @@ docker run -p 3003:3003 insightflow-documents
 ## Pruebas (Postman)
 
 Se adjunta en la raíz del repositorio el archivo `InsightFlow - Documents.postman_collection.json` que contiene las peticiones configuradas para probar todos los endpoints del servicio.
+
+## Flujo de Pruebas Recomendado
+
+Aunque se incluye una colección de Postman, puedes seguir estos pasos manuales para verificar el ciclo de vida completo (CRUD) de un documento.
+
+### 1. Crear Documento (POST)
+* **Endpoint:** `POST /documents`
+* **Acción:** Enviar un JSON con los datos requeridos.
+* **Cuerpo (JSON):**
+  ```json
+  {
+    "title": "Documento de Especificaciones",
+    "icon": "📝",
+    "workspace_id": "workspace-demo-123"
+  }
+
+* **Resultado Esperado:** Un código `201 Created` y un objeto JSON que incluye el nuevo `id` generado. **Nota:** Copia este `id` para los siguientes pasos.
+
+### 2. Leer Documento (GET)
+* **Endpoint:** `GET /documents/{id}`
+* **Acción:** Reemplaza `{id}` en la URL por el ID que copiaste en el paso anterior.
+* **Resultado Esperado:** Un código `200 OK` mostrando el documento completo con su contenido inicial (JSON vacío o por defecto) y `is_deleted: false`.
+
+### 3. Actualizar Contenido (PATCH)
+* **Endpoint:** `PATCH /documents/{id}`
+* **Acción:** Enviar actualizaciones de contenido o metadatos.
+* **Cuerpo (JSON):**
+  ```json
+  {
+    "title": "Documento Actualizado",
+    "content": {
+    "ops": [
+      { "insert": "Texto agregado durante la prueba.\n" }
+    ]
+  }
+* **Resultado Esperado:** Un código `200 OK` devolviendo el documento con el `title` y `content` modificados.
+
+### 4. Eliminar Documento (Soft Delete)
+* **Endpoint:** `DELETE /documents/{id}`
+* **Acción:** Enviar la petición DELETE al mismo ID.
+* **Resultado Esperado:** Un código `204 No Content` (sin cuerpo de respuesta).
+
+### 5. Verificar Soft Delete
+* **Endpoint:** `GET /documents/{id}`
+* **Acción:** Intentar leer nuevamente el documento borrado.
+* **Resultado Esperado:** Un código `404 Not Found`, confirmando que el documento ya no es accesible, aunque sigue existiendo físicamente en la memoria con la bandera `is_deleted: true`.
