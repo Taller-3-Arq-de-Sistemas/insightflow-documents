@@ -83,12 +83,13 @@ Aunque se incluye una colección de Postman, puedes seguir estos pasos manuales 
 ### 1. Crear Documento (POST)
 * **Endpoint:** `POST /documents`
 * **Acción:** Enviar un JSON con los datos requeridos.
+* **Importante:** El `workspace_id` **debe ser un UUID válido existente** en el servicio de Workspaces. Puedes obtener uno real consultando `https://insightflow-workspaces.onrender.com/api/workspaces`.
 * **Cuerpo (JSON):**
   ```json
   {
     "title": "Documento de Especificaciones",
     "icon": "📝",
-    "workspace_id": "workspace-demo-123"
+    "workspace_id": "1231d229-c079-4a00-a931-5751498f18c9 (UUID VÁLIDO)"
   }
 
 * **Resultado Esperado:** Un código `201 Created` y un objeto JSON que incluye el nuevo `id` generado. **Nota:** Copia este `id` para los siguientes pasos.
